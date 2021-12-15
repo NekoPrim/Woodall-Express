@@ -6,6 +6,8 @@
 // in .json file under "test" write "start": "node server/server.js"
 // terminal command: npm start
 // create variable to call expess and then a variable to run express
+// terminal command: npm install nodemon (will have to do for each prodject)
+//comand , auto import turn off
 
 const express = require('express');
 
