@@ -34,6 +34,8 @@ function onReady() {
         Made a network request, but who has time  to wait for that...
     `)
 
+        $('#commentForm').on('submit', onAddComment);
+
 }
 
 // my state is an array of comments
@@ -44,6 +46,7 @@ function render(comments) {
     for(let words of comments) {
         $('body').append(`
         <div>
+
         <ul class="comments">
         <li>
         ${words.message}
@@ -53,6 +56,7 @@ function render(comments) {
         by -${words.author}
         </li>
         </ul>
+
         </div>
         `);
     }
@@ -61,3 +65,27 @@ function render(comments) {
 function onClick() {
     $(this).css({"background-color": "green"});
 }
+
+function onAddComment(evt) {
+    // dont reload page
+    evt.preventDefault();
+
+    //prepare our message object
+    // to post to the server
+    let comment = {
+        author: $('#authorInput').val(),
+        message: $('#messageInput').val()
+    }
+    console.log('comment', comment);
+
+    //send data to server
+    $.ajax({
+        method: 'POST',
+        url: '/comments',
+        data: comment
+    })
+        .then((response) => {
+            console.log('POST response', response);
+        })
+}
+

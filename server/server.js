@@ -8,8 +8,10 @@
 // create variable to call expess and then a variable to run express
 // terminal command: npm install nodemon (will have to do for each prodject)
 //comand , auto import turn off
+// terminal command: npm install body-parser
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 //express is a function
 // that returns an 'app' object
@@ -24,6 +26,12 @@ const app = express();
 // GET /anotherOne.html
 // ... and any other files inside of /server/public
 app.use(express.static('server/public'));
+
+//dont forget body-parser!
+//https://i.imgur.com/qs0INo4.jpg
+app.use(express.static('server/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // handle requests for GET /space-jams
 // http://localhost:5000/space-jams
@@ -47,6 +55,16 @@ app.get('/comments', (req, res) => {
             message: 'New Space Jams sux, 1996 ftw'
         }
     ])
+})
+
+// post comments endpoint
+app.post('/comments', (req, res) => {
+    console.log('in POST /comments', req.body);
+
+    // TODO: save the comment to the sercer
+
+    // Sedn back a 
+    res.sendStatus(201);
 })
 
 
