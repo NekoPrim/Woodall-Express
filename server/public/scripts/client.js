@@ -36,28 +36,22 @@ function onReady() {
 
         $('#commentForm').on('submit', onAddComment);
 
+        $('#refresh').on('click', refresh);
 }
 
 // my state is an array of comments
 function render(comments) {
-    $('.comments').empty()
+    $('#comments').empty()
     // do some jQuery to render comments (state) to the DOM
     // res.send is an array of objects, so you will need to loop through
     for(let words of comments) {
-        $('body').append(`
-        <div>
-
-        <ul class="comments">
+        $('.comments').append(`
         <li>
-        ${words.message}
-        </li>
-
-        <li>
-        by -${words.author}
-        </li>
-        </ul>
-
-        </div>
+                ${comment.message}
+                <div>
+                    - by ${comment.author}
+                </div>
+            </li>
         `);
     }
 }
@@ -65,6 +59,8 @@ function render(comments) {
 function onClick() {
     $(this).css({"background-color": "green"});
 }
+
+
 
 function onAddComment(evt) {
     // dont reload page
@@ -82,10 +78,35 @@ function onAddComment(evt) {
     $.ajax({
         method: 'POST',
         url: '/comments',
+        // send the omment to the server
+        // in the request "body"
+
         data: comment
     })
         .then((response) => {
             console.log('POST response', response);
+
+            //refresh...
+            // GET /comments from the server again
+            // and render to the DOM
+            refresh();
         })
+    
 }
 
+function refresh() {
+    // make a network request
+    //make a http request
+    //make an AJAX request
+    // AJAX === "Asynchronous Javascript"
+    let ajaxOptions = {
+        method: 'GET',
+        url: '/comments'
+    };
+
+    $.ajax(ajaxOptions)
+        .then((response) => {
+            console.log('AJAX request complete!', response);
+            render(response);
+        });
+}

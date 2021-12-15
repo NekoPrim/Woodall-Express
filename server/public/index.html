@@ -18,30 +18,39 @@
         
         <h1>Ready for some Space Jams</h1>
 
-        <button>Awesome Button</button>
+        <h2>Comments</h2>
+        
+    <ul id="comments">
+
+    </ul>
+
+    <button id="refresh">Refresh</button>
+
+    <!-- Add a comment form -->
+    <form id="commentForm">
+
+        <h2>Add a comment</h2>
 
 
-        <form id="commentForm">
-<!-- add a comment form -->
-            <h2>Add a comment</h2>
+        <textarea 
+            id="messageInput"
+            rows="4"
+            cols="25"
+        ></textarea>
 
-            <textarea 
-                id="messageInput"
-                rows="3"
-                columns="25"
-                required
-            ></textarea>
-            <!-- dont leave space between >< in textarea -->
 
-            <input
-                type="text"
-                placeholder="your name"
-                id="authorInput"
-                required>
+        <input
+            type="text"
+            placeholder="Your Name"
+            id="authorInput"
+        />
 
-            <input type="submit">
 
-        </form>
-    </body>
+        <input type="submit" />
+
+    </form>
+
+</body>
 
 </html>
+    

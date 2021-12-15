@@ -44,6 +44,13 @@ app.get('/space-jams', (req, res) => {
     res.send('<h1>Ready to Space Jam?</h1><button>Jam Times</button>');
 });
 
+let comments = [
+    {
+    author: 'Dez',
+    message: 'New Space Jams sux, 1996 ftw'
+    }
+]
+
 // GET / comments endpoints
 // localhost:5000/comments
 app.get('/comments', (req, res) => {
@@ -62,6 +69,7 @@ app.post('/comments', (req, res) => {
     console.log('in POST /comments', req.body);
 
     // TODO: save the comment to the sercer
+    comments.push(req.body);
 
     // Sedn back a 
     res.sendStatus(201);
